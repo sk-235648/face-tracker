@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Scan, Camera, Zap } from "lucide-react";
 import { Scene3D } from "@/components/scene3D";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function HomePage() {
@@ -35,15 +34,10 @@ export default function HomePage() {
     },
   };
 
-  // Dummy handler for Get Started button
-  const handleGetStarted = () => {
-    // Implement navigation or logic here
-   
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-950 relative overflow-hidden">
-      {/* Background glow effects */}
+      {/* Background */}
       <div className="absolute inset-0 opacity-30"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -104,12 +98,12 @@ export default function HomePage() {
               </motion.button>
             </motion.div>
 
-            {/* Feature highlights */}
+            {/* Feature */}
             <motion.div
               variants={itemEaseOut}
               className="grid grid-cols-3 gap-4 pt-8"
             >
-              {/* Real-time Feature */}
+              {/* Real-time*/}
               <motion.div
                 className="cursor-pointer text-center p-4 bg-gray-800/10 backdrop-blur-sm border border-purple-500/10 rounded-lg"
                 whileHover={{ y: -5, scale: 1.05 }}
@@ -120,7 +114,7 @@ export default function HomePage() {
                 <div className="text-sm text-gray-400">Real-time</div>
               </motion.div>
 
-              {/* Accuracy Feature */}
+              {/* Accuracy */}
               <motion.div
                 className="cursor-pointer text-center p-4 bg-gray-800/10 backdrop-blur-sm border border-purple-500/10 rounded-lg"
                 whileHover={{ y: -5, scale: 1.05 }}
@@ -131,7 +125,7 @@ export default function HomePage() {
                 <div className="text-sm text-gray-400">Accuracy</div>
               </motion.div>
 
-              {/* Latency Feature */}
+              {/* Latency */}
               <motion.div
                 className="cursor-pointer text-center p-4 bg-gray-800/10 backdrop-blur-sm border border-purple-500/10 rounded-lg"
                 whileHover={{ y: -5, scale: 1.05 }}
@@ -144,7 +138,7 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* 3D Scene Section */}
+          {/* 3D */}
           <motion.div
             variants={itemEaseOut}
             className="relative h-[600px] w-full"
@@ -154,7 +148,7 @@ export default function HomePage() {
               <Scene3D />
             </div>
 
-            {/* Floating UI elements */}
+            {/* floatas */}
             <motion.div
               className="absolute top-8 right-8 bg-gray-800/80 backdrop-blur-sm border border-purple-500/20 rounded-lg p-3"
               animate={{ y: [0, -10, 0] }}

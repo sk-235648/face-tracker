@@ -39,7 +39,7 @@ export default function FaceRecorder({ onVideoSaved }) {
           };
         }
   
-        // 👇 Setup offscreen canvas for merged video + overlay
+        // Setup offscreen canvas for merged video + overlay
         const video = document.createElement("video");
         video.srcObject = stream;
         video.muted = true;
@@ -67,7 +67,7 @@ export default function FaceRecorder({ onVideoSaved }) {
         };
         drawToOffscreen();
   
-        // 👇 Use offscreen canvas stream for recording
+        // Use offscreen canvas stream for recording
         const mergedStream = offscreenCanvas.captureStream(30); // 30 FPS
         const audioTracks = stream.getAudioTracks();
         if (audioTracks.length) {
@@ -154,15 +154,15 @@ export default function FaceRecorder({ onVideoSaved }) {
             const points = detection.landmarks.positions;
             
             // Draw each facial feature
-            drawPath(points.slice(0, 17)); // Jaw
-            drawPath(points.slice(17, 22)); // Right eyebrow
-            drawPath(points.slice(22, 27)); // Left eyebrow
-            drawPath(points.slice(27, 31)); // Nose bridge
-            drawPath(points.slice(31, 36)); // Nose bottom
-            drawPath(points.slice(36, 42), true); // Right eye
-            drawPath(points.slice(42, 48), true); // Left eye
-            drawPath(points.slice(48, 60), true); // Outer lip
-            drawPath(points.slice(60, 68), true); // Inner lip
+            drawPath(points.slice(0, 17)); 
+            drawPath(points.slice(17, 22)); 
+            drawPath(points.slice(22, 27)); 
+            drawPath(points.slice(27, 31)); 
+            drawPath(points.slice(31, 36)); 
+            drawPath(points.slice(36, 42), true); 
+            drawPath(points.slice(42, 48), true); 
+            drawPath(points.slice(48, 60), true); 
+            drawPath(points.slice(60, 68), true); 
             
           });
         }

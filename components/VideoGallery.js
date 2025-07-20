@@ -8,7 +8,7 @@ export default function VideoGallery({ refresh }) {
 
   useEffect(() => {
     loadVideos()
-  }, [refresh]) // reload when refresh prop changes
+  }, [refresh]) 
 
   const loadVideos = () => {
     const request = indexedDB.open("videoDB", 1)
