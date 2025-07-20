@@ -1,103 +1,180 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { motion } from "framer-motion";
+import { Scan, Camera, Zap } from "lucide-react";
+import { Scene3D } from "@/components/scene3D";
+import Link from "next/link";
+
+export default function HomePage() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemEaseOut = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  // Dummy handler for Get Started button
+  const handleGetStarted = () => {
+    // Implement navigation or logic here
+    alert("Get Started clicked!");
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-950 relative overflow-hidden">
+      {/* Background glow effects */}
+      <div className="absolute inset-0 opacity-30"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className="container mx-auto px-4 py-8 relative z-10">
+        <motion.div
+          className="grid lg:grid-cols-2 gap-12 items-center min-h-screen"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Content Section */}
+          <div className="space-y-8">
+            <motion.div variants={itemEaseOut} className="space-y-6">
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/20 backdrop-blur-sm border border-purple-500/20 rounded-full text-sm"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Zap className="w-4 h-4 text-purple-500" />
+                <span className="text-gray-400">Real-time Face Detection</span>
+              </motion.div>
+
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+                <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                  Next-Gen
+                </span>
+                <br />
+                <span className="text-white">Face Tracking</span>
+              </h1>
+
+              <p className="text-xl text-gray-400 max-w-lg leading-relaxed">
+                Real Time Face Tracking with 60 FPS, 99.9% Accuracy next JS face
+                detection
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={itemEaseOut}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <motion.button
+                onClick={handleGetStarted}
+                whileHover={{ scale: 1.1 }}
+                className="cursor-pointer group relative overflow-hidden bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-lg font-medium flex items-center"
+              >
+                <Link
+                  href="/camera"
+                  className="group inline-flex items-center relative overflow-hidden"
+                >
+                  <motion.div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-20 transition-opacity" />
+                  <Camera className="w-5 h-5 mr-2" />
+                  Get Started
+                  <motion.div
+                    className="ml-2"
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  >
+                    →
+                  </motion.div>
+                </Link>
+              </motion.button>
+            </motion.div>
+
+            {/* Feature highlights */}
+            <motion.div
+              variants={itemEaseOut}
+              className="grid grid-cols-3 gap-4 pt-8"
+            >
+              {/* Real-time Feature */}
+              <motion.div
+                className="cursor-pointer text-center p-4 bg-gray-800/10 backdrop-blur-sm border border-purple-500/10 rounded-lg"
+                whileHover={{ y: -5, scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Camera className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold text-white">60 FPS</div>
+                <div className="text-sm text-gray-400">Real-time</div>
+              </motion.div>
+
+              {/* Accuracy Feature */}
+              <motion.div
+                className="cursor-pointer text-center p-4 bg-gray-800/10 backdrop-blur-sm border border-purple-500/10 rounded-lg"
+                whileHover={{ y: -5, scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Scan className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold text-white">99.9%</div>
+                <div className="text-sm text-gray-400">Accuracy</div>
+              </motion.div>
+
+              {/* Latency Feature */}
+              <motion.div
+                className="cursor-pointer text-center p-4 bg-gray-800/10 backdrop-blur-sm border border-purple-500/10 rounded-lg"
+                whileHover={{ y: -5, scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Zap className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold text-white">&lt;10ms</div>
+                <div className="text-sm text-gray-400">Latency</div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* 3D Scene Section */}
+          <motion.div
+            variants={itemEaseOut}
+            className="relative h-[600px] w-full"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-3xl backdrop-blur-sm border border-purple-500/10"></div>
+            <div className="absolute inset-4 rounded-2xl overflow-hidden">
+              <Scene3D />
+            </div>
+
+            {/* Floating UI elements */}
+            <motion.div
+              className="absolute top-8 right-8 bg-gray-800/80 backdrop-blur-sm border border-purple-500/20 rounded-lg p-3"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 3 }}
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm text-white">Tracking Active</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="absolute bottom-8 left-8 bg-gray-800/80 backdrop-blur-sm border border-purple-500/20 rounded-lg p-3"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 2.5, delay: 0.5 }}
+            >
+              <div className="text-sm text-white">
+                <div className="text-purple-500 font-semibold text-center">
+                  Face
+                </div>
+                <div className="text-gray-400">Detected</div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }
