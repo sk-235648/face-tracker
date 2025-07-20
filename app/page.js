@@ -4,8 +4,17 @@ import { motion } from "framer-motion";
 import { Scan, Camera, Zap } from "lucide-react";
 import { Scene3D } from "@/components/scene3D";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+
+  const router = useRouter();
+
+  const handleNavigation = () => {
+     alert("Get Started clicked!");
+    router.push("/camera");
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -29,7 +38,7 @@ export default function HomePage() {
   // Dummy handler for Get Started button
   const handleGetStarted = () => {
     // Implement navigation or logic here
-    alert("Get Started clicked!");
+   
   };
 
   return (
@@ -68,6 +77,7 @@ export default function HomePage() {
               <p className="text-xl text-gray-400 max-w-lg leading-relaxed">
                 Real Time Face Tracking with 60 FPS, 99.9% Accuracy next JS face
                 detection
+                Click ON GET STARTED to start tracking your face
               </p>
             </motion.div>
 
@@ -76,14 +86,11 @@ export default function HomePage() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.button
-                onClick={handleGetStarted}
+                onClick={handleNavigation}
                 whileHover={{ scale: 1.1 }}
                 className="cursor-pointer group relative overflow-hidden bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-lg font-medium flex items-center"
               >
-                <Link
-                  href="/camera"
-                  className="group inline-flex items-center relative overflow-hidden"
-                >
+                
                   <motion.div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-20 transition-opacity" />
                   <Camera className="w-5 h-5 mr-2" />
                   Get Started
@@ -94,7 +101,6 @@ export default function HomePage() {
                   >
                     →
                   </motion.div>
-                </Link>
               </motion.button>
             </motion.div>
 
