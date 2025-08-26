@@ -5,6 +5,7 @@ import { Scan, Camera, Zap } from "lucide-react";
 import { Scene3D } from "@/components/scene3D";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Script from "next/script";
 
 export default function HomePage() {
 
@@ -13,6 +14,15 @@ export default function HomePage() {
   const handleNavigation = () => {
      alert("Get Started clicked!");
     router.push("/camera");
+  };
+
+
+  const handleClick = () => {
+    if (typeof window !== "undefined" && window.Paperform?.popup) {
+      window.Paperform.popup("great-minds-ai-bootcamp-2025");
+    } else {
+      console.warn("Paperform popup function is not available yet.");
+    }
   };
 
   const containerVariants = {
@@ -98,11 +108,12 @@ export default function HomePage() {
                     →
                   </motion.div>
               </motion.button>
-                  <Link href="/pageform">
-      <button className="px-6 py-3 bg-purple-600 rounded-lg text-white hover:bg-purple-700">
-        Open Paperform Page
+                  <button
+        onClick={handleClick}
+        className="px-6 py-3 bg-purple-600 rounded-lg hover:bg-purple-700 text-lg"
+      >
+        Open Form
       </button>
-    </Link>
             </motion.div>
 
             {/* Feature */}
@@ -182,6 +193,10 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
       </div>
+      <Script
+        src="https://paperform.co/__embed.min.js"
+        strategy="afterInteractive"
+      />
     </div>
   );
 }
