@@ -38,11 +38,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-950 relative overflow-hidden">
-      <Link href="/pageform">
-      <button className="px-6 py-3 bg-purple-600 rounded-lg text-white hover:bg-purple-700">
-        Open Paperform Page
-      </button>
-    </Link>
+      
       {/* Background */}
       <div className="absolute inset-0 opacity-30"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
@@ -102,6 +98,11 @@ export default function HomePage() {
                     →
                   </motion.div>
               </motion.button>
+                  <Link href="/pageform">
+      <button className="px-6 py-3 bg-purple-600 rounded-lg text-white hover:bg-purple-700">
+        Open Paperform Page
+      </button>
+    </Link>
             </motion.div>
 
             {/* Feature */}
